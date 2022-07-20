@@ -7,6 +7,9 @@ from django.core.validators import RegexValidator
 class Profession(models.Model):
     text = models.CharField(max_length=150, blank=False)
 
+    def count_users(self):
+        return self.user_set.count()
+
     def __str__(self):
         return self.text
 

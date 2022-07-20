@@ -1,0 +1,25 @@
+<div class="modal fade" id="createNewProfession" data-backdrop="static" data-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createNewProfessionLabel">Окно добавления профессии</h5>
+            </div>
+            <div class="modal-body">
+                <form action="add_prof/" method="post" id="add_prof_form_id">
+                    <div class="mb-3">
+                        {% csrf_token %}
+                        {{ add_prof_form }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Подтвердить</button>
+                </form>
+            </div>
+            <div class="alert alert-danger d-none" role="alert">  </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="createNewProfessionWindowClose">Закрыть окно</button>
+                <!--        <button type="submit" class="btn btn-primary"  >Подтвердить</button>-->
+            </div>
+        </div>
+    </div>
+</div>

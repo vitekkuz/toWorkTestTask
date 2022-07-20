@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from task_app.views import index
+from task_app.views import index, AddProfession
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
+    path('add_prof/', AddProfession.as_view(), name='add_prof'),
 ]

@@ -1,358 +1,393 @@
 {% load static %}
 <!doctype html>
 <html lang="ru">
-  <head>
+<head>
     <!-- Обязательные метатеги -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Main page</title>
-  </head>
-  <body>
+</head>
+<body>
 
-  {% block content%}
+{% block content%}
 
 <!-- ============= Header ================ -->
 <nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#users" role="tab" aria-controls="home" aria-selected="true">Пользователи</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profiles" role="tab" aria-controls="profile" aria-selected="false">Справочники</a>
-  </li>
-</ul>
-    <form class="d-flex">
-      <input class="form-control mr-2" type="search" placeholder="Поиск по таблице" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Поиск</button>
-    </form>
-  </div>
+    <div class="container-fluid">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#users" role="tab" aria-controls="home"
+                   aria-selected="true">Пользователи</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profiles" role="tab"
+                   aria-controls="profile" aria-selected="false">Справочники</a>
+            </li>
+        </ul>
+        <form class="d-flex">
+            <input class="form-control mr-2" type="search" placeholder="Поиск по таблице" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Поиск</button>
+        </form>
+    </div>
 </nav>
-
-
 
 
 <div class="tab-content" id="myTabContent">
 
-<!-- ============== Users =============== -->
-  <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="home-tab">
-<button type="button" class="btn btn-secondary btn-sm" style="margin: 10px">Добавить нового сотрудника</button>
+    <!-- ============== Users =============== -->
+    <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="home-tab">
+        <button type="button" class="btn btn-secondary btn-sm" style="margin: 10px">Добавить нового сотрудника</button>
 
-    <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col" style="vertical-align: middle;">#</th>
-      <th scope="col"style="vertical-align: middle;">Фамилия</th>
-      <th scope="col"style="vertical-align: middle;">Имя</th>
-      <th scope="col" style="vertical-align: middle;">Отчество</th>
-      <th scope="col" style="vertical-align: middle;">
-        <p class="dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-expanded="false" style="margin: 0;">Пол</p>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <li><button class="dropdown-item" type="button">М</button></li>
-          <li><button class="dropdown-item" type="button">Ж</button></li>
-        </ul>
-      </th>
-
-      <th scope="col" style="vertical-align: middle;">Возраст</th>
-      <th scope="col" style="vertical-align: middle;">Профессия</th>
-      <th scope="col" style="vertical-align: middle;">Номер телефона</th>
-      <th scope="col" style="vertical-align: middle;">Адрес проживания</th>
-      <th scope="col" style="vertical-align: middle;">Редактировать</th>
-      <th scope="col" style="vertical-align: middle;">Удалить</th>
-    </tr>
-  </thead>
-  <tbody>
-<!--    <tr>-->
-<!--      <th scope="row">2</th>-->
-<!--      <td>Жан</td>-->
-<!--      <td>Поль</td>-->
-<!--      <td>Сартр</td>-->
-<!--      <td>М</td>-->
-<!--      <td>35</td>-->
-<!--      <td>Писатель</td>-->
-<!--      <td>89001002233</td>-->
-<!--      <td>Белгородская обл., Ракитянский р-н, Ракитное</td>-->
-<!--      <td style="text-align: center">-->
-<!--      <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">-->
-<!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">-->
-<!--  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
-<!--</svg>-->
-<!--</button>-->
-<!--      </td>-->
-<!--      <td style="text-align: center"><a href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">-->
-<!--  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>-->
-<!--</svg></a></td>-->
-<!--    </tr>-->
-
-
-    {% for user in users %}
-    <tr>
-      <th scope="row">3</th>
-      <td>{{ user.surname}}</td>
-      <td>{{ user.first_name}}</td>
-      <td>{{ user.middle_name}}</td>
-      <td>{{ user.sex}}</td>
-      <td>{{ user.age}}</td>
-      <td>{{ user.profession}}</td>
-      <td>{{ user.phoneNumber}}</td>
-      <td>{{ user.area}} область, {{ user.district}} район, {{ user.city}}</td>
-      <td style="text-align: center">
-      <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-</svg>
-</button>
-      </td>
-      <td style="text-align: center"><a href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-</svg></a></td>
-    </tr>
-
-  {% endfor %}
-
-
-  
-  </tbody>
-</table>
-
-  </div>
-
-<!-- ======================= Profiles ===========================-->
-  <div class="tab-pane fade" id="profiles" role="tabpanel" aria-labelledby="profile-tab">
-
-<!--  <div class="row">-->
-<!--&lt;!&ndash;    Список категорий &ndash;&gt;-->
-<!--    <div class="col-2">-->
-<!--      <ul class="nav flex-column">-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link active" aria-current="page" href="#">Профессия</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" href="#">Область</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" href="#">Район</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" href="#">Город</a>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </div>-->
-<!--&lt;!&ndash;    Таблица с данными по выбранной категории  &ndash;&gt;-->
-<!--    <div class="col-10">-->
-<!--        <table class="table">-->
-<!--          <thead>-->
-<!--            <tr>-->
-<!--              <th scope="col">id</th>-->
-<!--              <th scope="col">Значение</th>-->
-<!--              <th scope="col"  style="text-align: center">Редактировать</th>-->
-<!--              <th scope="col"  style="text-align: center">Удалить</th>-->
-<!--            </tr>-->
-<!--          </thead>-->
-<!--          <tbody>-->
-<!--            <tr>-->
-<!--              <th scope="row">1</th>-->
-<!--              <td>Писатель</td>-->
-<!--              <td style="text-align: center">-->
-<!--              <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">-->
-<!--        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">-->
-<!--          <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
-<!--        </svg>-->
-<!--        </button>-->
-<!--              </td>-->
-<!--              <td style="text-align: center"><a href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">-->
-<!--          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>-->
-<!--        </svg></a></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <th scope="row">2</th>-->
-<!--              <td>Строитель</td>-->
-<!--                <td style="text-align: center">-->
-<!--                <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">-->
-<!--          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">-->
-<!--            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
-<!--          </svg>-->
-<!--          </button>-->
-<!--                </td>-->
-<!--                <td style="text-align: center"><a href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">-->
-<!--            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>-->
-<!--          </svg></a></td>-->
-<!--              </tr>-->
-<!--            <tr>-->
-<!--              <th scope="row">3</th>-->
-<!--              <td>Другое</td>-->
-<!--                <td style="text-align: center">-->
-<!--                <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">-->
-<!--          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">-->
-<!--            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
-<!--          </svg>-->
-<!--          </button>-->
-<!--                </td>-->
-<!--                <td style="text-align: center"><a href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">-->
-<!--            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>-->
-<!--          </svg></a></td>-->
-<!--            </tr>-->
-<!--          </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-<!--    </div>-->
-
-    <div class="row">
-  <div class="col-2">
-    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-profession-tab" data-toggle="pill" href="#v-pills-profession" role="tab" aria-controls="v-pills-profession" aria-selected="true">Профессия</a>
-      <a class="nav-link" id="v-pills-arias-tab" data-toggle="pill" href="#v-pills-arias" role="tab" aria-controls="v-pills-arias" aria-selected="false">Область</a>
-      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Район</a>
-      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Город</a>
-    </div>
-  </div>
-  <div class="col-10">
-    <div class="tab-content" id="v-pills-tabContent">
-<!--      =========== Профессии ======================-->
-      <div class="tab-pane fade show active" id="v-pills-profession" role="tabpanel" aria-labelledby="v-pills-profession-tab">
-        <table class="table">
-          <thead>
+        <table class="table table-bordered">
+            <thead>
             <tr>
-              <th scope="col">id</th>
-              <th scope="col">Значение</th>
-              <th scope="col"  style="text-align: center">Редактировать</th>
-              <th scope="col"  style="text-align: center">Удалить</th>
+                <th scope="col" style="vertical-align: middle;">#</th>
+                <th scope="col" style="vertical-align: middle;">Фамилия</th>
+                <th scope="col" style="vertical-align: middle;">Имя</th>
+                <th scope="col" style="vertical-align: middle;">Отчество</th>
+                <th scope="col" style="vertical-align: middle;">
+                    <p class="dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown"
+                       aria-expanded="false" style="margin: 0;">Пол</p>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li>
+                            <button class="dropdown-item" type="button">М</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button">Ж</button>
+                        </li>
+                    </ul>
+                </th>
+
+                <th scope="col" style="vertical-align: middle;">Возраст</th>
+                <th scope="col" style="vertical-align: middle;">Профессия</th>
+                <th scope="col" style="vertical-align: middle;">Номер телефона</th>
+                <th scope="col" style="vertical-align: middle;">Адрес проживания</th>
+                <th scope="col" style="vertical-align: middle;">Редактировать</th>
+                <th scope="col" style="vertical-align: middle;">Удалить</th>
             </tr>
-          </thead>
-          <tbody>
+            </thead>
+            <tbody>
+            <!--    <tr>-->
+            <!--      <th scope="row">2</th>-->
+            <!--      <td>Жан</td>-->
+            <!--      <td>Поль</td>-->
+            <!--      <td>Сартр</td>-->
+            <!--      <td>М</td>-->
+            <!--      <td>35</td>-->
+            <!--      <td>Писатель</td>-->
+            <!--      <td>89001002233</td>-->
+            <!--      <td>Белгородская обл., Ракитянский р-н, Ракитное</td>-->
+            <!--      <td style="text-align: center">-->
+            <!--      <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">-->
+            <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">-->
+            <!--  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
+            <!--</svg>-->
+            <!--</button>-->
+            <!--      </td>-->
+            <!--      <td style="text-align: center"><a href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">-->
+            <!--  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>-->
+            <!--</svg></a></td>-->
+            <!--    </tr>-->
 
-          {% for profession in professions %}
 
+            {% for user in users %}
             <tr>
-              <th scope="row">1</th>
-              <td>{{profession.text}} ({{profession.user_set.count}})</td>
-              <td style="text-align: center">
-              <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-          <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-        </svg>
-        </button>
-              </td>
-              <td style="text-align: center"><a href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-        </svg></a></td>
+                <th scope="row">3</th>
+                <td>{{ user.surname}}</td>
+                <td>{{ user.first_name}}</td>
+                <td>{{ user.middle_name}}</td>
+                <td>{{ user.sex}}</td>
+                <td>{{ user.age}}</td>
+                <td>{{ user.profession}}</td>
+                <td>{{ user.phoneNumber}}</td>
+                <td>{{ user.area}} область, {{ user.district}} район, {{ user.city}}</td>
+                <td style="text-align: center">
+                    <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                        </svg>
+                    </button>
+                </td>
+                <td style="text-align: center"><a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                    </svg>
+                </a></td>
             </tr>
-          {% endfor %}
 
-          </tbody>
+            {% endfor %}
+
+
+            </tbody>
         </table>
-      </div>
-<!--      ============ Области ==========================-->
-      <div class="tab-pane fade" id="v-pills-arias" role="tabpanel" aria-labelledby="v-pills-arias-tab">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">id</th>
-              <th scope="col">Значение</th>
-              <th scope="col"  style="text-align: center">Редактировать</th>
-              <th scope="col"  style="text-align: center">Удалить</th>
-            </tr>
-          </thead>
-          <tbody>
 
-          {% for profession in arias %}
-
-            <tr>
-              <th scope="row">1</th>
-              <td>{{profession.text}} ({{profession.user_set.count}})</td>
-              <td style="text-align: center">
-              <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-          <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-        </svg>
-        </button>
-              </td>
-              <td style="text-align: center"><a href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-        </svg></a></td>
-            </tr>
-          {% endfor %}
-
-          </tbody>
-        </table>
-      </div>
-      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">ssss...</div>
-      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
     </div>
-  </div>
-</div>
 
-  </div>
+    <!-- ======================= Profiles ===========================-->
+    <!--  вторая вкладка -->
+    <div class="tab-pane fade" id="profiles" role="tabpanel" aria-labelledby="profile-tab">
 
+        <!--  <div class="row">-->
+        <!--&lt;!&ndash;    Список категорий &ndash;&gt;-->
+        <!--    <div class="col-2">-->
+        <!--      <ul class="nav flex-column">-->
+        <!--        <li class="nav-item">-->
+        <!--          <a class="nav-link active" aria-current="page" href="#">Профессия</a>-->
+        <!--        </li>-->
+        <!--        <li class="nav-item">-->
+        <!--          <a class="nav-link" href="#">Область</a>-->
+        <!--        </li>-->
+        <!--        <li class="nav-item">-->
+        <!--          <a class="nav-link" href="#">Район</a>-->
+        <!--        </li>-->
+        <!--        <li class="nav-item">-->
+        <!--          <a class="nav-link" href="#">Город</a>-->
+        <!--        </li>-->
+        <!--      </ul>-->
+        <!--    </div>-->
+        <!--&lt;!&ndash;    Таблица с данными по выбранной категории  &ndash;&gt;-->
+        <!--    <div class="col-10">-->
+        <!--        <table class="table">-->
+        <!--          <thead>-->
+        <!--            <tr>-->
+        <!--              <th scope="col">id</th>-->
+        <!--              <th scope="col">Значение</th>-->
+        <!--              <th scope="col"  style="text-align: center">Редактировать</th>-->
+        <!--              <th scope="col"  style="text-align: center">Удалить</th>-->
+        <!--            </tr>-->
+        <!--          </thead>-->
+        <!--          <tbody>-->
+        <!--            <tr>-->
+        <!--              <th scope="row">1</th>-->
+        <!--              <td>Писатель</td>-->
+        <!--              <td style="text-align: center">-->
+        <!--              <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">-->
+        <!--        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">-->
+        <!--          <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
+        <!--        </svg>-->
+        <!--        </button>-->
+        <!--              </td>-->
+        <!--              <td style="text-align: center"><a href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">-->
+        <!--          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>-->
+        <!--        </svg></a></td>-->
+        <!--            </tr>-->
+        <!--            <tr>-->
+        <!--              <th scope="row">2</th>-->
+        <!--              <td>Строитель</td>-->
+        <!--                <td style="text-align: center">-->
+        <!--                <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">-->
+        <!--          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">-->
+        <!--            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
+        <!--          </svg>-->
+        <!--          </button>-->
+        <!--                </td>-->
+        <!--                <td style="text-align: center"><a href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">-->
+        <!--            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>-->
+        <!--          </svg></a></td>-->
+        <!--              </tr>-->
+        <!--            <tr>-->
+        <!--              <th scope="row">3</th>-->
+        <!--              <td>Другое</td>-->
+        <!--                <td style="text-align: center">-->
+        <!--                <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">-->
+        <!--          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">-->
+        <!--            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
+        <!--          </svg>-->
+        <!--          </button>-->
+        <!--                </td>-->
+        <!--                <td style="text-align: center"><a href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">-->
+        <!--            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>-->
+        <!--          </svg></a></td>-->
+        <!--            </tr>-->
+        <!--          </tbody>-->
+        <!--        </table>-->
+        <!--    </div>-->
+        <!--    </div>-->
 
+        <div class="row">
+            <div class="col-2">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-profession-tab" data-toggle="pill" href="#v-pills-profession"
+                       role="tab" aria-controls="v-pills-profession" aria-selected="true">Профессия</a>
+                    <a class="nav-link" id="v-pills-arias-tab" data-toggle="pill" href="#v-pills-arias" role="tab"
+                       aria-controls="v-pills-arias" aria-selected="false">Область</a>
+                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
+                       aria-controls="v-pills-messages" aria-selected="false">Район</a>
+                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+                       aria-controls="v-pills-settings" aria-selected="false">Город</a>
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="tab-content" id="v-pills-tabContent">
 
+                    <!--      =========== Профессии ======================-->
+                    <div class="tab-pane fade show active" id="v-pills-profession" role="tabpanel"
+                         aria-labelledby="v-pills-profession-tab">
 
+                        <button type="button" class="btn btn-secondary btn-sm" style="margin: 10px" data-toggle="modal" data-target="#createNewProfession">
+                            Добавить новую профессию
+                        </button>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">Значение</th>
+                                <th scope="col" style="text-align: center">Редактировать</th>
+                                <th scope="col" style="text-align: center">Удалить</th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-  <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Окно редактирования пользователя</h5>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="exampleInput" class="form-label">Имя</label>
-            <input type="text" class="form-control" id="exampleInput" aria-describedby="someHelp">
-            <label for="exampleInput" class="form-label">Отчество</label>
-            <input type="text" class="form-control" id="exampleInput" aria-describedby="someHelp">
-            <label for="exampleInput" class="form-label">Фамилия</label>
-            <input type="text" class="form-control" id="exampleInput" aria-describedby="someHelp">
-            <label for="exampleInput" class="form-label">Пол</label>
-            <select class="form-select" aria-label="Выберите из списка">
-              <option selected>-</option>
-              <option value="0">М</option>
-              <option value="1">Ж</option>
-            </select>
-            <label for="exampleInput" class="form-label">Профессия</label>
-           <select class="form-select" aria-label="Выберите из списка">
-              <option selected>-</option>
-              <option value="0">Писатель</option>
-              <option value="1">Профессия[1]</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary">Подтвердить</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть окно</button>
-<!--        <button type="submit" class="btn btn-primary"  >Подтвердить</button>-->
-      </div>
+                            {% for profession in professions %}
+
+                            <tr>
+                                <th scope="row">{{profession.pk}}</th>
+                                <td>{{profession.text}} ({{profession.user_set.count}})</td>
+                                <td style="text-align: center">
+                                    <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td style="text-align: center"><a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                    </svg>
+                                </a></td>
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--      ============ Области (Значения) ========================== -->
+                    <div class="tab-pane fade" id="v-pills-arias" role="tabpanel" aria-labelledby="v-pills-arias-tab">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">Значение</th>
+                                <th scope="col" style="text-align: center">Редактировать</th>
+                                <th scope="col" style="text-align: center">Удалить</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for aria in arias %}
+
+                            <tr>
+                                <th scope="row">{{ aria.pk}}</th>
+                                <td>{{aria.text}} ({{aria.user_set.count}})</td>
+                                <td style="text-align: center">
+                                    <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td style="text-align: center"><a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                    </svg>
+                                </a></td>
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--      ============ Районы (Значения) ========================== -->
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                         aria-labelledby="v-pills-messages-tab">ssss...
+                    </div>
+
+                    <!--      ============ Города (Значения) ========================== -->
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                         aria-labelledby="v-pills-settings-tab">...
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-  </div>
+
+
+    <!-- Modal form: User-->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Окно редактирования пользователя</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInput" class="form-label">Имя</label>
+                            <input type="text" class="form-control" id="exampleInput" aria-describedby="someHelp">
+                            <label for="exampleInput" class="form-label">Отчество</label>
+                            <input type="text" class="form-control" id="exampleInput" aria-describedby="someHelp">
+                            <label for="exampleInput" class="form-label">Фамилия</label>
+                            <input type="text" class="form-control" id="exampleInput" aria-describedby="someHelp">
+                            <label for="exampleInput" class="form-label">Пол</label>
+                            <select class="form-select" aria-label="Выберите из списка">
+                                <option selected>-</option>
+                                <option value="0">М</option>
+                                <option value="1">Ж</option>
+                            </select>
+                            <label for="exampleInput" class="form-label">Профессия</label>
+                            <select class="form-select" aria-label="Выберите из списка">
+                                <option selected>-</option>
+                                <option value="0">Писатель</option>
+                                <option value="1">Профессия[1]</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Подтвердить</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть окно</button>
+                    <!--        <button type="submit" class="btn btn-primary"  >Подтвердить</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Modal form: CreateProfession-->
+    {% include 'task_app/modal_profession.html' %}
+
+
+
 </div>
-</div>
 
 
+{% endblock %}
 
 
-
-
-
-
-
-
-
-
-
-
-  {% endblock %}
-
-
-
-
+<!--jquery-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <!-- JavaScript and dependencies -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
 
+<script src="{% static 'task_app/js/add_prof.js' %}"></script>
 
-  </body>
+</body>
 </html>
