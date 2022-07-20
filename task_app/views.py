@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View
 
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.db.models.deletion import ProtectedError
 
 from .forms import ProfessionForm
 
@@ -45,7 +46,7 @@ class AddProfession(View):
                 return JsonResponse(data=data, status=201)
             # СЮДА НУЖНО БУДЕТ ДОБАВИТЬ СООБЩЕНИЕ О ТОМ, ЧТО НИЧЕГО НЕ ДОБАВЛЕНО
             else:
-                return JsonResponse(data={'error': 'какая-то ошибка'}, status=400)
+                return JsonResponse(data={'error': 'Ошибка'}, status=400)
 
 
     def get(self, request):
@@ -53,18 +54,14 @@ class AddProfession(View):
         context = {'add_prof_form': ProfessionForm()}
         render(request, 'task_app/base.html', context=context)
 
-class AddProfession1(View):
-    def post(self, request):
-        form_data = ProfessionForm(self.request.POST)
 
-        if form_data.is_valid():
-            new_prof, created = Profession.objects.get_or_create(text=form_data.cleaned_data['text'])
+class DelProfession(View):
+    def post(self, request, prof_pk):
+        form_data = self.request.POST
+        try:
+            form_data = Profession.objects.filter(pk=prof_pk).delete()
+            return JsonResponse(data={'deleted_pk': prof_pk}, status=201)
+        except ProtectedError as e:
+            return JsonResponse(data={'error': 'Ошибка удаления. Сначала необходимо удалить сотрудников, привязанных к этой профессии'}, status=400)
 
-            if created:
-                data = {'npk': new_prof.pk, 'ntext': new_prof.text}
-                print(data)
-                return JsonResponse(data=data, status=201)
-            # СЮДА НУЖНО БУДЕТ ДОБАВИТЬ СООБЩЕНИЕ О ТОМ, ЧТО НИЧЕГО НЕ ДОБАВЛЕНО
-            else:
-                return JsonResponse(data={'error': 'какая-то ошибка'}, status=400)
 
