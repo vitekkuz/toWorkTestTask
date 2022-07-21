@@ -5,7 +5,7 @@ from django.core.validators import RegexValidator
 # Create your models here.
 
 class Profession(models.Model):
-    text = models.CharField(max_length=150, blank=False)
+    text = models.CharField(max_length=150, blank=False, unique=True)
 
     def count_users(self):
         return self.user_set.count()

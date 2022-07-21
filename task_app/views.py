@@ -3,12 +3,12 @@ from django.views import View
 
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.db.models.deletion import ProtectedError
+from django.db.utils import IntegrityError
 
 from .forms import ProfessionForm
 
 from .models import User, Aria, District, City, PhoneNumber, Profession
 
-# Create your views here.
 
 def index(request):
 
@@ -25,6 +25,7 @@ def index(request):
                'arias': arias,
                'districts': districts,
                'add_prof_form': ProfessionForm(),
+               'modify_prof_form': ProfessionForm(),
                }
 
 
@@ -49,10 +50,38 @@ class AddProfession(View):
                 return JsonResponse(data={'error': 'Ошибка'}, status=400)
 
 
-    def get(self, request):
-        form = ProfessionForm()
-        context = {'add_prof_form': ProfessionForm()}
-        render(request, 'task_app/base.html', context=context)
+    # def get(self, request):
+    #     form = ProfessionForm()
+    #     context = {'add_prof_form': form}
+    #     return render(request, 'task_app/base.html', context=context)
+
+
+class ModifyProfession(View):
+    def post(self, request, prof_data):
+        form_data = ProfessionForm(self.request.POST)
+        if form_data.is_valid():
+            prof = Profession.objects.get(pk=prof_data)
+
+            if prof:
+                try:
+                    prof.text = form_data.cleaned_data['text']
+                    prof.save()
+                except IntegrityError as e:
+                    return JsonResponse(data={'error': 'Такая профессия уже существует'}, status=400)
+
+                data = {'cur_pk': prof.pk, 'ntext': prof.text}
+                # print(form_data)
+                print(data)
+                # print('test')
+                return JsonResponse(data=data, status=201)
+            else:
+                return JsonResponse(data={'error': 'Ошибка'}, status=400)
+
+
+    # def get(self, request):
+    #     form = ProfessionForm()
+    #     context = {'prof_form': form}
+    #     return render(request, 'task_app/base.html', context=context)
 
 
 class DelProfession(View):

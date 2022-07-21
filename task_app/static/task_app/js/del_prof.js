@@ -2,7 +2,7 @@ function openDel(el) {
     $('.alert-danger').attr('class', 'alert alert-danger d-none')
     var cur_prof_txt = $(el).parent().parent().children()[1]
     var cur_prof_id = $(el).parent().parent().children()[0]
-    cur_prof_txt = $(cur_prof_txt).html().split(' ')[0]
+    cur_prof_txt = $(cur_prof_txt).html().split(' (')[0]
     cur_prof_id = $(cur_prof_id).html()
 
     var form_prof = $('#del_prof_form_id')
