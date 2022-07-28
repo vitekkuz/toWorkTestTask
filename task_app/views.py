@@ -5,29 +5,40 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.db.models.deletion import ProtectedError
 from django.db.utils import IntegrityError
 
-from .forms import ProfessionForm
-
-from .models import User, Aria, District, City, PhoneNumber, Profession
+from .forms import ProfessionForm, UserForm
+from .models import User, Aria, District, City, PhoneNumber, Profession, Sex
 
 
 def index(request):
 
     users = User.objects.all()
+    surnames = users.all().values('surname').distinct()
+    middle_names = users.all().values('middle_name').distinct()
+    first_names = users.all().values('first_name').distinct()
+    # get address list unique
+    address_list = list(set([a.get_address() for a in users]))
+
     professions = Profession.objects.all()
     phoneNumbers = PhoneNumber.objects.all()
     cities = City.objects.all()
     arias = Aria.objects.all()
     districts = District.objects.all()
+    sex = Sex.objects.all()
     context = {'users': users,
+               'surnames': surnames,
+               'middle_names': middle_names,
+               'first_names': first_names,
+               'address_list': address_list,
                'professions': professions,
                'phoneNumbers': phoneNumbers,
                'cities': cities,
                'arias': arias,
+               'sex': sex,
                'districts': districts,
                'add_prof_form': ProfessionForm(),
                'modify_prof_form': ProfessionForm(),
+               'form_add_user': UserForm(),
                }
-
 
     return render(request, 'task_app/base.html', context=context)
 
@@ -92,5 +103,71 @@ class DelProfession(View):
             return JsonResponse(data={'deleted_pk': prof_pk}, status=201)
         except ProtectedError as e:
             return JsonResponse(data={'error': 'Ошибка удаления. Сначала необходимо удалить сотрудников, привязанных к этой профессии'}, status=400)
+
+
+class AddUser(View):
+    def post(self, request):
+        form_data = UserForm(self.request.POST)
+
+        if form_data.is_valid():
+
+            # try:
+            new_phone, phone_created = PhoneNumber.objects.get_or_create(phoneNumber=form_data.cleaned_data['phoneNumber'])
+            if phone_created:
+                print('Создан номер телефона: ', new_phone)
+            else:
+                print('Номер уже был')
+            if phone_created:
+                new_user = User.objects.create(
+                    surname=form_data.cleaned_data['surname'],
+                    middle_name=form_data.cleaned_data['middle_name'],
+                    first_name=form_data.cleaned_data['name'],
+                    sex=Sex.objects.get(sex=form_data.cleaned_data['sex']),
+                    age=form_data.cleaned_data['age'],
+                    phoneNumber=PhoneNumber.objects.get(phoneNumber= form_data.cleaned_data['phoneNumber']),
+                    profession=Profession.objects.get(text=form_data.cleaned_data['profession'])  ,
+                    area= Aria.objects.get(text= form_data.cleaned_data['area']),
+                    district=District.objects.get(text= form_data.cleaned_data['district']),
+                    city=City.objects.get(text= form_data.cleaned_data['city'])
+                )
+                print('cozdan ', new_user)
+            else:
+                return JsonResponse(data={'error': 'Введен существующий номер телефона'}, json_dumps_params={'ensure_ascii': False}, status=400)
+
+            # data = new_user # {'ntext': new_user}
+            nuser= User.objects.latest("pk")
+            print(nuser.sex)
+            return JsonResponse(data={
+                'pk': nuser.pk,
+                'surname': nuser.surname,
+                'first_name': nuser.first_name,
+                'middle_name': nuser.middle_name,
+                'sex': str(nuser.sex),
+                'age': nuser.age,
+                'phoneNumber': str(nuser.phoneNumber),
+                'profession': str(nuser.profession),
+                'area': str(nuser.area),
+                'district': str(nuser.district),
+                'city': str(nuser.city)
+            }, json_dumps_params={'ensure_ascii': False}, safe=False, status=201)
+            # except :
+            #     # print(new_prof)
+            #     # print(data)
+            #     # print('test')
+            #     return JsonResponse(data={'error': 'e' }, status=400)
+            # СЮДА НУЖНО БУДЕТ ДОБАВИТЬ СООБЩЕНИЕ О ТОМ, ЧТО НИЧЕГО НЕ ДОБАВЛЕНО
+        else:
+            return JsonResponse(data={'error': 'Ошибка'}, status=400)
+
+
+
+class DelUser(View):
+    def post(self, request, user_pk):
+        form_data = self.request.POST
+        try:
+            form_data = User.objects.filter(pk=user_pk).delete()
+            return JsonResponse(data={'deleted_pk': user_pk}, status=201)
+        except:
+            return JsonResponse(data={'error': 'Ошибка удаления!'}, status=400)
 
 

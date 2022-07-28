@@ -39,63 +39,110 @@
 
     <!-- ============== Users =============== -->
     <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="home-tab">
-        <button type="button" class="btn btn-secondary btn-sm" style="margin: 10px">Добавить нового сотрудника</button>
+        <button type="button" class="btn btn-secondary btn-sm" style="margin: 10px" data-toggle="modal" data-target="#createNewUser">
+            Добавить нового сотрудника
+        </button>
 
-        <table class="table table-bordered">
+        <!--  таблица со списком сотрудников  -->
+        <table class="table table-bordered" id="table_users">
             <thead>
             <tr>
                 <th scope="col" style="vertical-align: middle;">#</th>
-                <th scope="col" style="vertical-align: middle;">Фамилия</th>
-                <th scope="col" style="vertical-align: middle;">Имя</th>
-                <th scope="col" style="vertical-align: middle;">Отчество</th>
                 <th scope="col" style="vertical-align: middle;">
-                    <p class="dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown"
+                    <p class="dropdown-toggle" type="button" id="dropdownMenuSurames" data-toggle="dropdown"
+                       aria-expanded="false" style="margin: 0;">Фамилия</p>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuSurames">
+
+                        {% for el in surnames %}
+                        <li>
+                            <button class="dropdown-item" type="button">{{ el.surname  }}</button>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </th>
+                <th scope="col" style="vertical-align: middle;">
+                    <p class="dropdown-toggle" type="button" id="dropdownMenuNames" data-toggle="dropdown"
+                       aria-expanded="false" style="margin: 0;">Имя</p>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuNames">
+
+                        {% for el in first_names %}
+                        <li>
+                            <button class="dropdown-item" type="button">{{ el.first_name  }}</button>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </th>
+                <th scope="col" style="vertical-align: middle;">
+                    <p class="dropdown-toggle" type="button" id="dropdownMenuMiddleNames" data-toggle="dropdown"
+                       aria-expanded="false" style="margin: 0;">Отчество</p>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuMiddleNames">
+
+                        {% for el in middle_names %}
+                        <li>
+                            <button class="dropdown-item" type="button">{{ el.middle_name  }}</button>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </th>
+                <th scope="col" style="vertical-align: middle;">
+                    <p class="dropdown-toggle" type="button" id="dropdownMenuSex" data-toggle="dropdown"
                        aria-expanded="false" style="margin: 0;">Пол</p>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuSex">
+
+                        {% for el in sex %}
                         <li>
-                            <button class="dropdown-item" type="button">М</button>
+                            <button class="dropdown-item" type="button">{{ el  }}</button>
                         </li>
-                        <li>
-                            <button class="dropdown-item" type="button">Ж</button>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </th>
 
                 <th scope="col" style="vertical-align: middle;">Возраст</th>
-                <th scope="col" style="vertical-align: middle;">Профессия</th>
-                <th scope="col" style="vertical-align: middle;">Номер телефона</th>
-                <th scope="col" style="vertical-align: middle;">Адрес проживания</th>
+                <th scope="col" style="vertical-align: middle;">
+                    <p class="dropdown-toggle" type="button" id="dropdownMenuProfession" data-toggle="dropdown"
+                       aria-expanded="false" style="margin: 0;">Профессия</p>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuProfession">
+
+                        {% for el in professions %}
+                        <li>
+                            <button class="dropdown-item" type="button">{{ el.text  }}</button>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </th>
+                <th scope="col" style="vertical-align: middle;">
+                    <p class="dropdown-toggle" type="button" id="dropdownMenuPhonenumber" data-toggle="dropdown"
+                       aria-expanded="false" style="margin: 0;">Номер телефона</p>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuPhonenumber">
+
+                        {% for el in phoneNumbers %}
+                        <li>
+                            <button class="dropdown-item" type="button">{{ el.phoneNumber  }}</button>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </th></th>
+                <th scope="col" style="vertical-align: middle;">
+                    <p class="dropdown-toggle" type="button" id="dropdownMenuAddress" data-toggle="dropdown"
+                       aria-expanded="false" style="margin: 0;">Адрес</p>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuAddress">
+
+                        {% for el in address_list %}
+                        <li>
+                            <button class="dropdown-item" type="button">{{ el }}</button>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </th>
                 <th scope="col" style="vertical-align: middle;">Редактировать</th>
                 <th scope="col" style="vertical-align: middle;">Удалить</th>
             </tr>
             </thead>
             <tbody>
-            <!--    <tr>-->
-            <!--      <th scope="row">2</th>-->
-            <!--      <td>Жан</td>-->
-            <!--      <td>Поль</td>-->
-            <!--      <td>Сартр</td>-->
-            <!--      <td>М</td>-->
-            <!--      <td>35</td>-->
-            <!--      <td>Писатель</td>-->
-            <!--      <td>89001002233</td>-->
-            <!--      <td>Белгородская обл., Ракитянский р-н, Ракитное</td>-->
-            <!--      <td style="text-align: center">-->
-            <!--      <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">-->
-            <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">-->
-            <!--  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
-            <!--</svg>-->
-            <!--</button>-->
-            <!--      </td>-->
-            <!--      <td style="text-align: center"><a href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">-->
-            <!--  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>-->
-            <!--</svg></a></td>-->
-            <!--    </tr>-->
-
 
             {% for user in users %}
             <tr>
-                <th scope="row">3</th>
+                <th scope="row">{{ user.pk}}</th>
                 <td>{{ user.surname}}</td>
                 <td>{{ user.first_name}}</td>
                 <td>{{ user.middle_name}}</td>
@@ -104,15 +151,17 @@
                 <td>{{ user.profession}}</td>
                 <td>{{ user.phoneNumber}}</td>
                 <td>{{ user.area}} область, {{ user.district}} район, {{ user.city}}</td>
-                <td style="text-align: center">
-                    <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-pencil-fill" viewBox="0 0 16 16">
+
+
+                     <td style="text-align: center">
+                    <button type="button" class="btn" data-toggle="modal" data-target="#modifyUser" id="user_modify_icon_{{user.pk}}"  onclick="openModifyUserForm(this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                             fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                             <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                         </svg>
                     </button>
                 </td>
-                <td style="text-align: center"><a href="#">
+            <td style="text-align: center"><a data-toggle="modal" data-target="#deleteUser" href="#" id="user_delete_icon_{{user.pk}}"  onclick = "openDelUser(this)" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-trash-fill" viewBox="0 0 16 16">
                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
@@ -166,7 +215,7 @@
         <!--              <th scope="row">1</th>-->
         <!--              <td>Писатель</td>-->
         <!--              <td style="text-align: center">-->
-        <!--              <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">-->
+        <!--              <button type="button" class="btn" data-toggle="modal" data-target="#createNewUser">-->
         <!--        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">-->
         <!--          <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
         <!--        </svg>-->
@@ -180,7 +229,7 @@
         <!--              <th scope="row">2</th>-->
         <!--              <td>Строитель</td>-->
         <!--                <td style="text-align: center">-->
-        <!--                <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">-->
+        <!--                <button type="button" class="btn" data-toggle="modal" data-target="#createNewUser">-->
         <!--          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">-->
         <!--            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
         <!--          </svg>-->
@@ -194,7 +243,7 @@
         <!--              <th scope="row">3</th>-->
         <!--              <td>Другое</td>-->
         <!--                <td style="text-align: center">-->
-        <!--                <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">-->
+        <!--                <button type="button" class="btn" data-toggle="modal" data-target="#createNewUser">-->
         <!--          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">-->
         <!--            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
         <!--          </svg>-->
@@ -288,7 +337,7 @@
                                 <th scope="row">{{ aria.pk}}</th>
                                 <td>{{aria.text}} ({{aria.user_set.count}})</td>
                                 <td style="text-align: center">
-                                    <button type="button" class="btn" data-toggle="modal" data-target="#staticBackdrop">
+                                    <button type="button" class="btn" data-toggle="modal" data-target="#createNewUser">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                             <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
@@ -325,45 +374,11 @@
 
 
     <!-- Modal form: User-->
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Окно редактирования пользователя</h5>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleInput" class="form-label">Имя</label>
-                            <input type="text" class="form-control" id="exampleInput" aria-describedby="someHelp">
-                            <label for="exampleInput" class="form-label">Отчество</label>
-                            <input type="text" class="form-control" id="exampleInput" aria-describedby="someHelp">
-                            <label for="exampleInput" class="form-label">Фамилия</label>
-                            <input type="text" class="form-control" id="exampleInput" aria-describedby="someHelp">
-                            <label for="exampleInput" class="form-label">Пол</label>
-                            <select class="form-select" aria-label="Выберите из списка">
-                                <option selected>-</option>
-                                <option value="0">М</option>
-                                <option value="1">Ж</option>
-                            </select>
-                            <label for="exampleInput" class="form-label">Профессия</label>
-                            <select class="form-select" aria-label="Выберите из списка">
-                                <option selected>-</option>
-                                <option value="0">Писатель</option>
-                                <option value="1">Профессия[1]</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Подтвердить</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть окно</button>
-                    <!--        <button type="submit" class="btn btn-primary"  >Подтвердить</button>-->
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include 'task_app/modal_add_user.html' %}
+
+    <!-- Modal form: User-->
+    {% include 'task_app/modal_del_user.html' %}
+
 
         <!-- Modal form: CreateProfession-->
     {% include 'task_app/modal_add_profession.html' %}
@@ -390,6 +405,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
         crossorigin="anonymous"></script>
+
+<script src="{% static 'task_app/js/add_user.js' %}"></script>
+<script src="{% static 'task_app/js/del_user.js' %}"></script>
 
 <script src="{% static 'task_app/js/add_prof.js' %}"></script>
 <script src="{% static 'task_app/js/del_prof.js' %}"></script>

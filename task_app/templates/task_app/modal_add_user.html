@@ -1,0 +1,23 @@
+<div class="modal fade" id="createNewUser" data-backdrop="static" data-keyboard="false" tabindex="-1"
+     aria-labelledby="createNewUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createNewUserLabel">Окно редактирования пользователя</h5>
+            </div>
+            <div class="modal-body">
+                <form action="add_user/" method="post" id="add_user_form_id">
+                    <div class="mb-3">
+                        {% csrf_token %}
+                        {{ form_add_user }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Подтвердить</button>
+                </form>
+            </div>
+            <div class="alert alert-danger d-none" role="alert">  </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="createNewUserWindowClose" onclick = "NewUserWindowClose(this)">Закрыть окно</button>
+            </div>
+        </div>
+    </div>
+</div>

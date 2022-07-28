@@ -1,28 +1,28 @@
-function openDel(el) {
+function openDelUser(el) {
     $('.alert-danger').attr('class', 'alert alert-danger d-none')
     var cur_prof_txt = $(el).parent().parent().children()[1]
-    var cur_prof_id = $(el).parent().parent().children()[0]
+    var cur_user_id = $(el).parent().parent().children()[0]
     cur_prof_txt = $(cur_prof_txt).html().split(' (')[0]
-    cur_prof_id = $(cur_prof_id).html()
+    cur_user_id = $(cur_user_id).html()
 
-    var form_prof = $('#del_prof_form_id')
-    var s = $(form_prof).attr('action').toString().replace('0', cur_prof_id)
-    form_prof = $('#del_prof_form_id')
-    form_prof = $(form_prof).attr('action', s)
+    var form_prof = $('#del_user_form_id')
     console.log($(form_prof).attr('action'))
+    var s = $(form_prof).attr('action').toString().replace('0', cur_user_id)
+    form_prof = $('#del_user_form_id')
+    form_prof = $(form_prof).attr('action', s)
 
-    $('#prof_to_del_text').append(cur_prof_txt)
+    $('#user_to_del_text').append(cur_prof_txt)
 }
 
-function closeDelForm(el) {
+function closeDelUserForm(el) {
     $('.alert-danger').attr('class', 'alert alert-danger d-none')
-    $('#prof_to_del_text').html('')
-    $('#del_prof_form_id').attr('action', '/del_prof/0/')
+    $('#user_to_del_text').html('')
+    $('#del_user_form_id').attr('action', '/del_user/0/')
 }
 
 
 $(function () {
-    $('#del_prof_form_id').submit(function (e) {
+    $('#del_user_form_id').submit(function (e) {
         e.preventDefault()
         $.ajax({
             type: this.method,
@@ -35,7 +35,7 @@ $(function () {
                 // удаляем строку из таблицы
                 row_id = response.deleted_pk
                 console.log(row_id)
-                var row = "#prof_delete_icon_"+row_id
+                var row = "#user_delete_icon_"+row_id
                 row = row.replace(' ', '_')
 
                 console.log(row)
@@ -43,7 +43,7 @@ $(function () {
 
 
 
-                var b = $('#deleteProfessionWindowClose')
+                var b = $('#deleteUserWindowClose')
                 b.click()
                 console.log(response)
                 console.log('Удалено успешно')

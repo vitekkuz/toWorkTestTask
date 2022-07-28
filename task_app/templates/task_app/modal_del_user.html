@@ -1,0 +1,26 @@
+<div class="modal fade" id="deleteUser" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Удаление пользователя</h5>
+      </div>
+
+      <div class="modal-body">
+                <form action="{%url 'del_user' user_pk='0' %}" method="post" id="del_user_form_id">
+                    <div class="mb-3">
+                        {% csrf_token %}
+                        <h5>Вы действительно ходите удалить пользователя: <b id="user_to_del_text"></b> ?</h5>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">Подтвердить</button>
+                </form>
+            </div>
+            <div class="alert alert-danger d-none" role="alert">  </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="deleteUserWindowClose" onclick = "closeDelUserForm(this)">Закрыть окно</button>
+            </div>
+    </div>
+  </div>
+</div>
+

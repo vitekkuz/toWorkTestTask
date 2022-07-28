@@ -35,7 +35,6 @@ class Sex(models.Model):
          verbose_name_plural = "Пол"
 
 
-
 class PhoneNumber(models.Model):
     phoneNumberRegex = RegexValidator(regex = r"^\+?1?\d{8,15}$")
     phoneNumber = models.CharField(validators = [phoneNumberRegex], max_length = 16, unique = True)
@@ -58,6 +57,7 @@ class Aria(models.Model):
     class Meta:
          verbose_name = "Область"
          verbose_name_plural = "Области"
+
 
 class District(models.Model):
     text = models.CharField(max_length=150, blank=False)
@@ -100,3 +100,5 @@ class User(models.Model):
          verbose_name = "Пользователь"
          verbose_name_plural = "Пользователи"
 
+    def get_address(self):
+        return f'{self.area} область, {self.district} р-н, г. {self.city}'
