@@ -14,14 +14,14 @@ $(function ($) {
                 $('#table_users tbody').append([
                 `<tr>
                 <th scope="row">`+response.pk+`</th>
-                <td> ` +response.surname + ` </td>
-                <td> ` +response.first_name + ` </td>
-                <td> ` +response.middle_name + ` </td>
-                <td> ` +response.sex + ` </td>
-                <td> ` +response.age + ` </td>
-                <td> ` +response.profession + ` </td>
-                <td> ` +response.phoneNumber + ` </td>
-                <td> ` +response.area + ` область, ` +response.district + ` район, ` +response.city + ` </td>
+                <td>` +response.surname + `</td>
+                <td>` +response.first_name + `</td>
+                <td>` +response.middle_name + `</td>
+                <td>` +response.sex +` </td>
+                <td>` +response.age +` </td>
+                <td>` +response.profession + `</td>
+                <td>` +response.phoneNumber + `</td>
+                <td>` +response.area + ` область, ` +response.district + ` район, ` +response.city + ` </td>
                 <td style="text-align: center">
                     <button type="button" class="btn" data-toggle="modal" data-target="#modifyUser" id="user_modify_icon_`+response.pk+`" onclick="openModifyUserForm(this)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

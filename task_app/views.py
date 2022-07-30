@@ -130,13 +130,11 @@ class AddUser(View):
                     district=District.objects.get(text= form_data.cleaned_data['district']),
                     city=City.objects.get(text= form_data.cleaned_data['city'])
                 )
-                print('cozdan ', new_user)
             else:
                 return JsonResponse(data={'error': 'Введен существующий номер телефона'}, json_dumps_params={'ensure_ascii': False}, status=400)
 
             # data = new_user # {'ntext': new_user}
             nuser= User.objects.latest("pk")
-            print(nuser.sex)
             return JsonResponse(data={
                 'pk': nuser.pk,
                 'surname': nuser.surname,
@@ -171,29 +169,39 @@ class DelUser(View):
 
 
 class ModifyUser(View):
-    def post(self, request, prof_user):
+    def post(self, request, user_pk):
         form_data = UserForm(self.request.POST)
         if form_data.is_valid():
-            user = User.objects.get(pk=prof_user)
+            user = User.objects.get(pk=user_pk)
 
             if user:
-                try:
-                    new_phone, phone_created = PhoneNumber.objects.get_or_create(
-                        phoneNumber=form_data.cleaned_data['phoneNumber'])
-                    if phone_created:
-                        print('Создан номер телефона: ', new_phone)
-                    else:
-                        print('Номер уже был')
+                new_phone, phone_created = PhoneNumber.objects.get_or_create(
+                    phoneNumber=form_data.cleaned_data['phoneNumber'])
+                user.surname = form_data.cleaned_data['surname']
+                user.middle_name = form_data.cleaned_data['middle_name']
+                user.first_name = form_data.cleaned_data['name']
+                user.sex = Sex.objects.get(sex=form_data.cleaned_data['sex'])
+                user.age = form_data.cleaned_data['age']
+                if phone_created:
+                    user.phoneNumber = PhoneNumber.objects.get(phoneNumber=form_data.cleaned_data['phoneNumber'])
+                user.profession = Profession.objects.get(text=form_data.cleaned_data['profession'])
+                user.area = Aria.objects.get(text=form_data.cleaned_data['area'])
+                user.district = District.objects.get(text=form_data.cleaned_data['district'])
+                user.city = City.objects.get(text=form_data.cleaned_data['city'])
+                user.save()
 
-                    user.phoneNumber=PhoneNumber.objects.get(phoneNumber=form_data.cleaned_data['phoneNumber']),
-                    user.save()
-                except IntegrityError as e:
-                    return JsonResponse(data={'error': 'Такой сотрудник уже существует'}, status=400)
-
-                data = {'cur_pk': user.pk, 'ntext': user.text}
-                # print(form_data)
-                print(data)
-                # print('test')
-                return JsonResponse(data=data, status=201)
+                return JsonResponse(data={
+                    'pk': user.pk,
+                    'surname': user.surname,
+                    'first_name': user.first_name,
+                    'middle_name': user.middle_name,
+                    'sex': str(user.sex),
+                    'age': user.age,
+                    'phoneNumber': str(user.phoneNumber),
+                    'profession': str(user.profession),
+                    'area': str(user.area),
+                    'district': str(user.district),
+                    'city': str(user.city)
+                }, json_dumps_params={'ensure_ascii': False}, safe=False, status=201)
             else:
-                return JsonResponse(data={'error': 'Ошибка'}, status=400)
+                return JsonResponse(data={'error': 'Ошибка! Сотрудник не найден в базе!'}, status=400)
