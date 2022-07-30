@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from task_app.views import index, AddProfession, DelProfession, ModifyProfession, AddUser, DelUser
+from task_app.views import index, \
+    AddProfession, DelProfession, ModifyProfession, \
+    AddUser, DelUser, ModifyUser
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +27,6 @@ urlpatterns = [
     path('modify_prof/<str:prof_data>/', ModifyProfession.as_view(), name='modify_prof'),
     path('add_user/', AddUser.as_view(), name='add_user'),
     path('del_user/<str:user_pk>/', DelUser.as_view(), name='del_user'),
+    path('modify_user/<str:user_pk>/', ModifyUser.as_view(), name='modify_user'),
+
 ]

@@ -1,0 +1,25 @@
+<div class="modal fade" id="modifyUser" data-backdrop="static" data-keyboard="false" tabindex="-1"
+     aria-labelledby="modifyUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modifyUserLabel">Окно редактирования карточки сотрудника</h5>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'modify_user' user_pk='-' %}" method="post" id="modify_user_form_id">
+                    <div class="mb-3">
+                        {% csrf_token %}
+                        {{ form_add_user }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Подтвердить</button>
+                </form>
+            </div>
+            <div class="alert alert-danger d-none" role="alert">  </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modifyUserWindowClose" onclick = "closeModifyUserForm(this)">Закрыть окно</button>
+
+            </div>
+        </div>
+    </div>
+</div>

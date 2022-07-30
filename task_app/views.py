@@ -160,7 +160,6 @@ class AddUser(View):
             return JsonResponse(data={'error': 'Ошибка'}, status=400)
 
 
-
 class DelUser(View):
     def post(self, request, user_pk):
         form_data = self.request.POST
@@ -171,3 +170,30 @@ class DelUser(View):
             return JsonResponse(data={'error': 'Ошибка удаления!'}, status=400)
 
 
+class ModifyUser(View):
+    def post(self, request, prof_user):
+        form_data = UserForm(self.request.POST)
+        if form_data.is_valid():
+            user = User.objects.get(pk=prof_user)
+
+            if user:
+                try:
+                    new_phone, phone_created = PhoneNumber.objects.get_or_create(
+                        phoneNumber=form_data.cleaned_data['phoneNumber'])
+                    if phone_created:
+                        print('Создан номер телефона: ', new_phone)
+                    else:
+                        print('Номер уже был')
+
+                    user.phoneNumber=PhoneNumber.objects.get(phoneNumber=form_data.cleaned_data['phoneNumber']),
+                    user.save()
+                except IntegrityError as e:
+                    return JsonResponse(data={'error': 'Такой сотрудник уже существует'}, status=400)
+
+                data = {'cur_pk': user.pk, 'ntext': user.text}
+                # print(form_data)
+                print(data)
+                # print('test')
+                return JsonResponse(data=data, status=201)
+            else:
+                return JsonResponse(data={'error': 'Ошибка'}, status=400)
